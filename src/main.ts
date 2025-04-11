@@ -10,15 +10,22 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const port = process.env.PORT ?? 3000;
   const logger = new Logger();
-  app.useGlobalInterceptors(new LayoutInterceptor(new Reflector()));
-  app.setViewEngine('hbs');
+
   app.useStaticAssets(join(__dirname, '..', './static'), {
     prefix: '/static',
   });
+  app.useGlobalInterceptors(new LayoutInterceptor(new Reflector()));
+  app.setViewEngine('hbs');
+
   app.setBaseViewsDir(join(__dirname, '..', './views'));
-  hbs.registerHelper('hello', (name: string) => {
-    return `Hello ${name}`;
-  });
+  app.set('view cache', false);
+
+  if (process.env.NODE_ENV !== 'production') {
+    app.use((req, res, next) => {
+      hbs.registerPartials(join(__dirname, '..', './views/partials'));
+      next();
+    });
+  }
 
   await app.listen(port).then(() => {
     const bold = '\x1b[1m';
