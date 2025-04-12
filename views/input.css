@@ -46,3 +46,75 @@
   @apply -z-10 absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
 }
 /* end main layout classes */
+
+/* login page classes */
+.auth-screen {
+  @apply py-6 px-16 gap-4 flex h-screen;
+}
+
+.auth-container {
+  @apply flex flex-col flex-1;
+}
+
+.auth-header {
+  @apply flex items-center justify-between;
+}
+
+.auth-link {
+  @apply flex gap-4 items-center;
+}
+
+.only-logo {
+  @apply p-1.5 rounded-xl flex items-center;
+}
+
+.small-text {
+  @apply text-sm text-neutral-600;
+}
+/* end login page classes */
+
+/* login form classes */
+.login-form {
+  @apply max-w-lg mx-auto w-full flex flex-col justify-center h-full items-center;
+}
+
+.form-header {
+  @apply flex flex-col items-center gap-2 mb-8;
+}
+
+.input-group {
+  @apply flex flex-col gap-2 w-full;
+}
+
+.label {
+  @apply text-sm;
+}
+
+.input {
+  @apply rounded-xl border border-gray-200 shadow-sm p-3 focus:outline-blue-600;
+}
+
+.inputs {
+  @apply flex flex-col gap-2 w-full;
+}
+
+.social-butons {
+  @apply flex gap-4 items-center w-full;
+}
+
+.social-icon {
+  @apply w-5 mx-auto;
+}
+
+.divider {
+  @apply w-full flex items-center my-6;
+}
+
+.divider-line {
+  @apply flex-grow h-px bg-neutral-600;
+}
+
+.divider-text {
+  @apply mx-1 whitespace-nowrap;
+}
+/* end login form classes */
