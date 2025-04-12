@@ -6,7 +6,7 @@ export class RoutesController {
   constructor() {}
 
   @Get()
-  @Layout('layout')
+  @Layout('main-layout')
   @Render('index')
   homePage() {
     return { name: 'Yusup', title: 'Home' };
@@ -16,5 +16,11 @@ export class RoutesController {
   @Render('login')
   loginPage() {
     return { name: 'Yusup', title: 'Login' };
+  }
+
+  @Get('/sign-up')
+  @Render('sign-up')
+  signUpPage() {
+    return { name: 'Yusup', title: 'Sign up' };
   }
 }

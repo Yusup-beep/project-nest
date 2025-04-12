@@ -13,11 +13,8 @@ export class LayoutInterceptor implements NestInterceptor {
   constructor(private reflector: Reflector) {}
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const handler = context.getHandler();
-    const controller = context.getClass();
 
-    const layout =
-      this.reflector.get<string>(LAYOUT_KEY, handler) ??
-      this.reflector.get<string>(LAYOUT_KEY, controller);
+    const layout = this.reflector.get<string>(LAYOUT_KEY, handler);
     return next.handle().pipe(
       map((data) => {
         if (layout) {
