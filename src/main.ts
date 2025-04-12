@@ -25,6 +25,8 @@ async function bootstrap() {
       hbs.registerPartials(join(__dirname, '..', './views/partials'));
       next();
     });
+  } else {
+    hbs.registerPartials(join(__dirname, '..', './views/partials'));
   }
 
   await app.listen(port).then(() => {
