@@ -5,12 +5,28 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import * as hbs from 'hbs';
 import { LayoutInterceptor } from './interceptors/layout.interceptor';
-
+import * as session from 'express-session';
+import * as passport from 'passport';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const port = process.env.PORT ?? 3000;
   const logger = new Logger();
 
+  app.use(
+    session({
+      secret: 'secret_123',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 3600000 },
+    }),
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use((req, res, next) => {
+    console.log(req.user);
+    next();
+  });
   app.useStaticAssets(join(__dirname, '..', './static'), {
     prefix: '/static',
   });

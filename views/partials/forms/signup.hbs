@@ -1,58 +1,82 @@
-<div class='login-form'>
-  <div class='form-header'>
-    <p class='text-2xl'>
+<div class="login-form">
+  <div class="form-header">
+    <p class="text-2xl">
       Create your account
     </p>
-    <p class='small-text'>
+    <p class="small-text">
       You can also sign up with
     </p>
   </div>
-  <div class='social-butons'>
-    <button class='button flex-1'>
-      <img class='social-icon' src='/static/img/google.svg' alt='Google' />
+  <div class="social-butons">
+    <button class="button flex-1">
+      <img class="social-icon" src="/static/img/google.svg" alt="Google" />
     </button>
-    <button class='button flex-1'>
-      <img class='social-icon' src='/static/img/apple.svg' alt='Apple' />
+    <button class="button flex-1">
+      <img class="social-icon" src="/static/img/apple.svg" alt="Apple" />
     </button>
   </div>
-  <div class='divider'>
-    <div class='divider-line'></div>
-    <span class='small-text divider-text'>
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="small-text divider-text">
       Or
     </span>
-    <div class='divider-line'></div>
+    <div class="divider-line"></div>
   </div>
-  <div class='inputs'>
-    <div class='input-group'>
-      <label class='label' for='fullname'>
+  <div class="inputs">
+    <div class="input-group">
+      <label class="label" for="fullName">
         Full Name
       </label>
-      <input class='input' id='fullname' type='text' placeholder='John Doe' />
+      <input class="input" id="fullName" type="text" placeholder="John Doe" />
     </div>
-    <div class='input-group'>
-      <label class='label' for='email'>
+    <div class="input-group">
+      <label class="label" for="email">
         Email Address
       </label>
       <input
-        class='input'
-        id='email'
-        type='email'
-        placeholder='hello@example.com'
+        class="input"
+        id="email"
+        type="email"
+        placeholder="hello@example.com"
       />
     </div>
-    <div class='input-group'>
-      <label class='label' for='password'>
+    <div class="input-group">
+      <label class="label" for="password">
         Password
       </label>
       <input
-        class='input'
-        id='password'
-        type='password'
-        placeholder='Your password'
+        class="input"
+        id="password"
+        type="password"
+        placeholder="Your password"
       />
     </div>
-    <button class='button !bg-blue-600 text-white mt-4' type='submit'>
+    <button class="button !bg-blue-600 text-white mt-4" type="submit">
       Sign Up
     </button>
   </div>
 </div>
+
+<script>
+  const button = document.querySelector('.button[type="submit"]');
+  const data = {}
+  button.addEventListener('click', (e) => {
+    button.disabled = true
+    document.querySelectorAll('.input').forEach(input => {
+      data[input.id] = input.value
+    });
+
+    fetch('/auth/signup', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then(data => {
+      if (data.message === "Success")
+        localStorage.setItem("toastMessage", "Login now");
+        window.location.href = "/login";
+    })
+    console.log(data);
+  });
+</script>

@@ -1,4 +1,5 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Req, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { Layout } from 'src/decorators/layout.decorator';
 
 @Controller()
@@ -14,7 +15,10 @@ export class RoutesController {
 
   @Get('/login')
   @Render('login')
-  loginPage() {
+  loginPage(@Req() req, @Res() res: Response) {
+    if (req.user) {
+      return res.redirect('/');
+    }
     return { name: 'Yusup', title: 'Login' };
   }
 

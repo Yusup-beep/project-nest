@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-rubik: 'Rubik', sans-serif;
 }
@@ -27,7 +29,7 @@
 }
 
 .button {
-  @apply bg-white py-3.5 px-6 rounded-xl shadow-sm hover:bg-neutral-50 transition-colors;
+  @apply bg-white py-3.5 px-6 rounded-xl shadow-sm hover:bg-neutral-50 transition-colors dark:shadow-md dark:bg-neutral-800 dark:text-white;
 }
 /* end header classes */
 
@@ -42,6 +44,14 @@
 /* end home page classes */
 
 /* main layout classes */
+.toast-alert {
+  @apply fixed top-3 right-3 shadow-sm p-3 rounded-xl bg-white dark:bg-neutral-800 translate-x-40 transition-all;
+}
+
+.toast-alert.active {
+  @apply translate-x-0;
+}
+
 .bg-pattern {
   @apply -z-10 absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)];
 }
@@ -69,7 +79,7 @@
 }
 
 .small-text {
-  @apply text-sm text-neutral-600;
+  @apply text-sm text-neutral-600 dark:text-white;
 }
 /* end login page classes */
 
@@ -91,7 +101,7 @@
 }
 
 .input {
-  @apply rounded-xl border border-gray-200 shadow-sm p-3 focus:outline-blue-600;
+  @apply rounded-xl border border-gray-200 shadow-sm p-3 focus:outline-blue-600 dark:shadow-md focus:dark:outline-neutral-900 dark:bg-neutral-800 dark:text-white dark:border-neutral-600;
 }
 
 .inputs {
@@ -103,7 +113,7 @@
 }
 
 .social-icon {
-  @apply w-5 mx-auto;
+  @apply w-5 h-5 mx-auto;
 }
 
 .divider {
@@ -111,7 +121,7 @@
 }
 
 .divider-line {
-  @apply flex-grow h-px bg-neutral-600;
+  @apply flex-grow h-px bg-neutral-600 dark:bg-white;
 }
 
 .divider-text {

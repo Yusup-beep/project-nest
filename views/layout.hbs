@@ -1,11 +1,19 @@
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link href='/static/css/app.css' rel='stylesheet' />
-    <title>{{title}}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/css/app.css" rel="stylesheet" />
+    <title>
+      {{title}}
+    </title>
   </head>
-  <body class='font-rubik'>
+  <body class="font-rubik dark:bg-neutral-900 dark:text-white">
+    <div id="alerts">
+    </div>
+
     {{{body}}}
+
+    <script src="/static/js/theme.js"></script>
+    <script src="/static/js/toast-alerts.js"></script>
   </body>
 </html>
